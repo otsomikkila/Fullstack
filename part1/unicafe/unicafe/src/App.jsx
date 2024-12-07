@@ -14,18 +14,26 @@ const Score = ({score, amount}) => {
 
 const Statistics = ({allstats}) => {
   const {good, bad, neutral, average, total} = allstats
-  //console.log(allstats)
-  return (
-    <div>
-      <Header name="statistics" />
-      <Score score="good" amount={good} />
-      <Score score="neutral" amount={neutral} />
-      <Score score="bad" amount={bad} />
-      <Score score="all" amount={total} />
-      <p>average {total == 0 ? 0 : average}</p>
-      <p>positive {total == 0 ? 0 : (good / total) * 100} %</p>
-    </div>
-  )
+  if (total > 0) {
+    return (
+      <div>
+        <Header name="statistics" />
+        <Score score="good" amount={good} />
+        <Score score="neutral" amount={neutral} />
+        <Score score="bad" amount={bad} />
+        <Score score="all" amount={total} />
+        <p>average {total == 0 ? 0 : average}</p>
+        <p>positive {total == 0 ? 0 : (good / total) * 100} %</p>
+      </div>
+    )
+  }
+  else{
+    return (
+      <p>No feedback given</p>
+    )
+  }
+
+  
 }
 
 const App = () => {
