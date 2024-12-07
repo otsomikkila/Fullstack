@@ -12,6 +12,22 @@ const Score = ({score, amount}) => {
   )
 }
 
+const Statistics = ({allstats}) => {
+  const {good, bad, neutral, average, total} = allstats
+  //console.log(allstats)
+  return (
+    <div>
+      <Header name="statistics" />
+      <Score score="good" amount={good} />
+      <Score score="neutral" amount={neutral} />
+      <Score score="bad" amount={bad} />
+      <Score score="all" amount={total} />
+      <p>average {total == 0 ? 0 : average}</p>
+      <p>positive {total == 0 ? 0 : (good / total) * 100} %</p>
+    </div>
+  )
+}
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
@@ -19,6 +35,14 @@ const App = () => {
   const [bad, setBad] = useState(0)
   const average = (good * 1 + bad * (-1) + neutral * (0))/(good + bad + neutral)
   const total = (good + bad + neutral)
+  const statistics = {
+    good: good,
+    neutral: neutral,
+    bad: bad,
+    average: average,
+    total: total
+  }
+
   return (
     <div>
       <Header name="give feedback" />
@@ -33,13 +57,8 @@ const App = () => {
         bad
       </button>
       
-      <Header name="statistics" />
-      <Score score="good" amount={good} />
-      <Score score="neutral" amount={neutral} />
-      <Score score="bad" amount={bad} />
-      <Score score="all" amount={total} />
-      <p>average {total == 0 ? 0 : average}</p>
-      <p>positive {total == 0 ? 0 : (good / total) * 100} %</p>
+      <Statistics allstats={statistics}/>
+      
     </div>
   )
 }
