@@ -13,22 +13,36 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
+  const [scores, setScores] = useState([0,0,0,0,0,0,0,0]) 
+  
+  const incrementClick = (index) => {
+    const nextScore = scores.map((c, i) => {
+      if (i === index) {
+        return c + 1;
+      } else {
+        return c;
+      }
+    });
+    setScores(nextScore);
+  }
 
   const getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
   }
   
-  console.log(getRandomInt(8));
+  console.log(scores);
 
   //a random number 0-7
   return (
     <div>
+      <p>{anecdotes[selected]}</p>
+      <p>has {scores[selected]} votes</p>
+      
       <div>
-        {anecdotes[selected]}
-      </div>
-      <div>
+      <button onClick={() => incrementClick(selected)}>vote</button>
       <button onClick={() => setSelected(getRandomInt(8))}>next anecdote</button>
       </div>
+
     </div>
   )
 }
