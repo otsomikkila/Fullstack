@@ -10,7 +10,10 @@ const Button = (props) => {
 
 const StatisticLine = ({name, value}) => {
   return (
-    <p>{name} {value}</p>
+    <tr>
+      <td>{name}</td>
+      <td>{value}</td>
+    </tr>
   )
 }
 
