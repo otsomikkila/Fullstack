@@ -5,12 +5,15 @@ const App = () => {
     { name: 'Arto Hellas' }
   ]) 
   const [newName, setNewName] = useState('')
+  const [newNumber, setNewNumber] = useState('')
 
-  const addName = (event) => {
+  const addPerson = (event) => {
     event.preventDefault()
     console.log(newName)
-    const nameObject = {
-      name: newName
+
+    const personObject = {
+      name: newName,
+      number: newNumber
     }
 
     if (persons.map(n => n.name).includes(newName)) {
@@ -18,20 +21,24 @@ const App = () => {
     }
     else {
       console.log(persons.map(n => n.name).includes("Arto Hellas"))
-      setPersons(persons.concat(nameObject))
+      setPersons(persons.concat(personObject))
       setNewName('')
+      setNewNumber('')
     }
   }
 
   const handleNameChange = (event) => {
-    //console.log(event.target.value)
     setNewName(event.target.value)
+  }
+
+  const handleNumberChange = (event) => {
+    setNewNumber(event.target.value)
   }
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <form onSubmit={addName}>
+      <form onSubmit={addPerson}>
         <div>
           name: 
           <input 
@@ -39,6 +46,15 @@ const App = () => {
             onChange={handleNameChange}
           />
         </div>
+
+        <div>
+          number:
+          <input
+            value={newNumber}
+            onChange={handleNumberChange}
+          />
+        </div>
+
         <div>
           <button type="submit">add</button>
         </div>
@@ -46,7 +62,7 @@ const App = () => {
       <h2>Numbers</h2>
       <ul>
       {persons.map(person => {
-        return <li key={person.name}>{person.name}</li>
+        return <li key={person.name}>{person.name} {person.number}</li>
       })}
       </ul>
     </div>
