@@ -27,12 +27,12 @@ const Part = ({part}) => {
 }
 
 const Total = ({parts}) => {
-  let sum = 0
-  const partsList = parts.map(n => sum += n.exercises)
-  //console.log(partsList)
-  //console.log(sum)
+  console.log(parts)
+  const total = parts.reduce((s,p) => {
+    return s += p.exercises
+  }, 0)
   return (
-    <p>Number of exercises {sum}</p>
+    <p>Number of exercises {total}</p>
   )
 }
 
