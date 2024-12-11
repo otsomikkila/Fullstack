@@ -12,6 +12,7 @@ const Content = ({parts}) => {
       {parts.map(part => 
         <Part part={part} key={part.id}/>
       )}
+      <Total parts={parts}/>
     </div>
   )
 }
@@ -25,11 +26,11 @@ const Part = ({part}) => {
   )
 }
 
-const Total = (props) => {
+const Total = ({parts}) => {
   let sum = 0
-  const partsList = props.parts.map(n => sum += n.exercises)
-  console.log(partsList)
-  console.log(sum)
+  const partsList = parts.map(n => sum += n.exercises)
+  //console.log(partsList)
+  //console.log(sum)
   return (
     <p>Number of exercises {sum}</p>
   )
@@ -63,7 +64,12 @@ const App = () => {
         name: 'State of a component',
         exercises: 14,
         id: 3
-      }
+      },
+      {
+        name: 'Redux',
+        exercises: 11,
+        id: 4
+      },
     ]
   }
   
