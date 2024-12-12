@@ -22,7 +22,16 @@ const PersonForm = ({persons, setPersons}) => {
       }
   
       if (persons.map(n => n.name).includes(newName)) {
-        alert(`${newName} is already added to phonebook`)
+        if (window.confirm(`${newName} is already added in the phonebook, replace old number with a new one?`)) {
+          const person = persons.find(n => n.name === newName)
+          const changedPerson = { ...person, number: newNumber}
+
+          personService.update(person.id, changedPerson).then(response => {
+            setPersons(persons.map(n => n.id === person.id ? response.data : n))
+          })
+          setNewName('')
+          setNewNumber('')
+        }
       }
       else {
         console.log(persons.map(n => n.name).includes("Arto Hellas"))
