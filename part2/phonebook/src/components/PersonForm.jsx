@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import personService from '../services/person'
 
 const PersonForm = ({persons, setPersons}) => {
     const [newName, setNewName] = useState('')
@@ -25,9 +26,12 @@ const PersonForm = ({persons, setPersons}) => {
       }
       else {
         console.log(persons.map(n => n.name).includes("Arto Hellas"))
-        setPersons(persons.concat(personObject))
-        setNewName('')
-        setNewNumber('')
+        
+        personService.create(personObject).then(response => {
+          setPersons(persons.concat(response.data))
+          setNewName('')
+          setNewNumber('')
+        })
       }
     }
   
