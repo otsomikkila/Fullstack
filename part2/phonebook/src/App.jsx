@@ -27,7 +27,11 @@ const App = () => {
       />
 
       <h2>Numbers</h2>
-      <Persons persons={persons} newSearch={newSearch}/>
+      <Persons 
+        persons={persons}
+        setPersons={setPersons}
+        newSearch={newSearch}
+      />
     </div>
   )
 }
