@@ -5,13 +5,13 @@ import { Persons } from './components/Persons'
 import personService from './services/person'
 import './index.css'
 
-const Notification = ({ message }) => {
+const Notification = ({ message, messageStyle }) => {
   if (message === null) {
     return null
   }
 
   return (
-    <div className='error'>
+    <div className={messageStyle}>
       {message}
     </div>
   )
@@ -21,6 +21,7 @@ const App = () => {
   const [persons, setPersons] = useState([]) 
   const [newSearch, setNewSearch] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
+  const [messageStyle, setMessageStyle] = useState('message')
   
   useEffect(() => {
     personService
@@ -33,13 +34,17 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={errorMessage}/>
+      <Notification 
+        message={errorMessage}
+        messageStyle={messageStyle}
+      />
       <Search newSearch={newSearch} setNewSearch={setNewSearch}/>
       <h2>add a new</h2>
       <PersonForm 
         persons={persons}
         setPersons={setPersons}
         setErrorMessage={setErrorMessage}
+        setMessageStyle={setMessageStyle}
       />
 
       <h2>Numbers</h2>
