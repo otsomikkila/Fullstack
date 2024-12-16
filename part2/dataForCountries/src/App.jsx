@@ -20,9 +20,15 @@ const App = () => {
 
   return (
     <div>
-    <Search newSearch={newSearch} setNewSearch={setNewSearch} setCountries={setCountries} originalCountries={originalCountries}/> 
+    <Search 
+      newSearch={newSearch}
+      setNewSearch={setNewSearch}
+      setCountries={setCountries}
+      originalCountries={originalCountries}
+    /> 
     <Content 
       countries={countries}
+      setCountries={setCountries}
       originalCountries={originalCountries}
     />
     </div>
